@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,22 +25,28 @@ class _HomePageState extends State<HomePage> {
   String namefield = '';
 
   String emailField = '';
-  String outPut = '';
+  //String outPut = '';
 
-  Future<String> returnName() async {
-    await Future.delayed(const Duration(seconds: 10), () {
-      return 'kalyan';
-    });
-    setState(() {
-      outPut = 'nameOutput';
-    });
-    return outPut;
-  }
+  // Future<String> returnName() async {
+  //   await Future.delayed(const Duration(seconds: 10), () {
+  //     return 'kalyan';
+  //   });
+  //   setState(() {
+  //     outPut = 'nameOutput';
+  //   });
+  //   return outPut;
+  // }
 
-  TextEditingController nameController = TextEditingController();
+  TextEditingController nameController = TextEditingController(text: '1');
 
   TextEditingController emailController = TextEditingController();
-
+  List<String> itemmss = [
+    'kalyan',
+    'ram',
+    'sridhar',
+    'gona',
+  ];
+  String dropdownvalue = 'kalyan';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,39 +58,62 @@ class _HomePageState extends State<HomePage> {
             controller: nameController,
           ),
           TextField(
-            decoration: const InputDecoration(),
+            decoration: const InputDecoration(counterText: 'email'),
             controller: emailController,
           ),
           const SizedBox(
             height: 10,
           ),
+
+          // Container(
+          //   color: Colors.black,
+          //   height: 60,
+          //   width: 80,
+          //   child: DropdownButton(
+          //     value: dropdownvalue,
+          //     items: itemmss.map((String items) {
+          //       return DropdownMenuItem(
+          //         value: items,
+          //         child: Text(items),
+          //       );
+          //     }).toList(),
+          //     onChanged: (String? newValue) {
+          //       setState(() {
+          //         dropdownvalue = newValue!;
+          //       });
+          //     },
+          //   ),
+          // ),
+
           ElevatedButton(
               onPressed: () {
                 setState(() {
                   namefield = nameController.text;
                   emailField = emailController.text;
-                  returnName();
+                  print(emailField);
+                  print('namefield is $namefield');
+                  //returnName();
                 });
               },
               child: const Text('Submit')),
-          Container(
-            color: Colors.blue,
-            height: 90,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  namefield,
-                  style: const TextStyle(color: Colors.white),
-                ),
-                Text(outPut),
-                Text(
-                  emailField,
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
-          )
+          // Container(
+          //   color: Colors.blue,
+          //   height: 90,
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       Text(
+          //         namefield,
+          //         style: const TextStyle(color: Colors.white),
+          //       ),
+          //       //Text(outPut),
+          //       Text(
+          //         emailField,
+          //         style: const TextStyle(color: Colors.white),
+          //       ),
+          //     ],
+          //   ),
+          // )
         ]),
       ),
     );
